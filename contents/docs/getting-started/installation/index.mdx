@@ -1,72 +1,94 @@
 ---
-title: Installation
-description: Installation guide for our application.
+title: Instalasi
+description: Panduan instalasi untuk menggunakan API.
 ---
 
-Setting up PDDIKTI Docs is straightforward, with options to clone the repository or use the convenient `npx` command. PDDIKTI Docs requires [Node.js](https://nodejs.org/) version 18 or higher for optimal performance.
+Menyiapkan PDDIKTI Docs untuk digunakan adalah sangat mudah, dengan melakukan instalasi `requests` kamu dapat menggunakan API secara langsung. Berikut adalah opsi yang dapat digunakan:
 
-## Clone Repository
-To get started, you can clone the PDDIKTI Docs repository directly from GitHub. 
+## Google Colab
+Untuk memulai, kamu dapat mengikuti langkah-langkah berikut:
 <Stepper>
-  <StepperItem title="Step 1: Clone the PDDIKTI Docs Repository">
-    Begin by cloning the PDDIKTI Docs repository from GitHub:
+  <StepperItem title="Buka Google Colab">
+    Kamu dapat membuka Google Colab melalui [tautan ini](https://colab.research.google.com/).
 
     ```plaintext
-    git clone https://github.com/ridwaanhall/PDDIKTI-Docs.git
+    https://colab.research.google.com/
     ```
   </StepperItem>
 
-  <StepperItem title="Step 2: Access the Project Directory">
-    After cloning, navigate into the project directory to start setting up:
-
-    ```plaintext
-    cd Aria-Docs
-    ```
+  <StepperItem title="Buat proyek baru">
+    Buat proyek baru dengan menekan tombol `New Notebook`.
   </StepperItem>
 
-  <StepperItem title="Step 3: Install Required Dependencies">
-    Install all necessary project dependencies with npm:
+  <StepperItem title="Buat cell baru">
+    Cell baru dapat dibuat dengan menekan `add code`.
+  </StepperItem>
 
-    <Note title="Remember">
-      To support React 19, package maintainers will need to test and update their packages to include React 19 as a peer dependency. This is already in progress.
+  <StepperItem title="Install library requests">
+    Lakukan instalasi `requests` dengan mengetikkan ini di cell tersebut:
+
+    ```plaintext
+    !pip install requests
+    ```
+    <Note type="danger" title="Ingat">
+      Pastikan kamu menjalankan cell tersebut agar dapat melakukan instalasi.
     </Note>
 
-    ```plaintext
-    npm install
-    ```
   </StepperItem>
 
-  <StepperItem title="Step 4: Launch the Development Server">
-    Finally, start the development server to view the project locally:
-
-    ```plaintext
-    npm run dev
-    ```
+  <StepperItem title="Hore!">
+    <Note type="success" title="Berhasil">
+      Hore! kamu berhasil melakukan instalasi dengan benar dan dapat digunakan!
+    </Note>
   </StepperItem>
 </Stepper>
 
-## Quick Setup with npx
+## Visual Studio Code
+Untuk memulai, kamu dapat mengikuti langkah-langkah berikut:
+<Stepper>
+  <StepperItem title="Buka Visual Studio Code">
+    <Note type="warning" title="Peringatan">
+      Jika kamu belum memiliki Visual Studio Code, kamu dapat menginstall terlebih dahulu melalui tautan [berikut](https://code.visualstudio.com/download/) atau menggunakan Google Colab.
+    </Note>
+    Buka Visual Studio Code seperti meembuka aplikasi lain yang ada di komputer/pc kamu.
+  </StepperItem>
 
-For a faster setup, use the `npx` command to create a new PDDIKTI Docs project in one step:
+  <StepperItem title="Buat virtual environment">
+    Buka terminal pada Visual Studio Code dan ketikkan text berikut:
+    ```plaintext
+    virtualenv venv
+    ```
+  </StepperItem>
 
-```plaintext
-npx create-aria-doc <project-directory>
-```
+  <StepperItem title="Aktifkan virtual environment">
+    Untuk windows:
+    ```plaintext
+    venv\scripts\activate
+    ```
 
-**Command Output:**
+    Untuk mac/linux:
+    ```plaintext
+    source venv/bin/activate
+    ```
+  </StepperItem>
 
-```plaintext
-Creating a new PDDIKTI Docs project in /path/to/your/project from the master branch...
-Cloning Master (Full Documentation)...
-PDDIKTI Docs project successfully created in /path/to/your/project!
+  <StepperItem title="Install library requests">
+    Lakukan instalasi `requests` dengan mengetikkan ini di terminal:
 
-Next steps:
-1. Navigate to your project directory:
-   cd <project-directory>
-2. Install dependencies:
-   npm install
-3. Start the development server:
-   npm run dev
-```
+    ```plaintext
+    pip install requests
+    ```
+    <Note type="warning" title="Ingat">
+      kamu dapat mengecek apakah library telah terinstall di virtual environment dengan menjalankan ini di terminal `pip freeze`.
+    </Note>
 
-With this setup, you’ll have a ready-to-use PDDIKTI Docs instance to start building your documentation.
+  </StepperItem>
+
+  <StepperItem title="Hore!">
+    <Note type="success" title="Berhasil">
+      Hore! kamu berhasil melakukan instalasi dengan benar dan dapat digunakan!
+    </Note>
+  </StepperItem>
+</Stepper>
+
+Dengan setup instalasi ini, kamu telah siap untuk menggunakan PDDIKTI Docs dan mencoba API yang kamu ingin coba.
