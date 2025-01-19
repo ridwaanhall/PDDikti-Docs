@@ -1,6 +1,6 @@
 ---
 title: List API
-description: Bagian ini memberikan informasi terkait API yang tersedia.
+description: Bagian ini memberikan informasi terkait  struktur dan API yang tersedia.
 ---
 
 ## List API yang tersedia
@@ -8,78 +8,40 @@ Berikut adalah API yang tersedia:
 
 ### Search
 
-Endpoint ini digunakan untuk mencari data perguruan tinggi, prodi, dosen, mahasiswa atau semua.
+Endpoint `search` digunakan untuk mencari data perguruan tinggi, prodi, dosen, mahasiswa atau semua.
 
 ```
-search                  // Endpoint untuk melakukan pencarian
-├── all/<str:keyword>   // Mencari data berdasarkan seluruh kategori: pergurutan tinggi, prodi, dosen, dan mahasiswa
-├── pt/<str:keyword>    // Mencari data berdasarkan pergurutan tinggi
-├── prodi/<str:keyword> // Mencari data berdasarkan program studi
-├── dosen/<str:keyword> // Mencari data berdasarkan dosen
-└── mhs/<str:keyword>   // Mencari data berdasarkan mahasiswa
+search                  // endpoint untuk melakukan pencarian
+├── all/<str:keyword>   // mencari data berdasarkan seluruh kategori: pergurutan tinggi, prodi, dosen, dan mahasiswa
+├── pt/<str:keyword>    // mencari data berdasarkan pergurutan tinggi
+├── prodi/<str:keyword> // mencari data berdasarkan program studi
+├── dosen/<str:keyword> // mencari data berdasarkan dosen
+└── mhs/<str:keyword>   // mencari data berdasarkan mahasiswa
 ```
 
 ### Perguruan Tinggi (PT)
 
-This folder contains the main application code for Next.js, managing layouts, routing, and specific content pages. It is organized to support both the `docs` and `blog` sections, with dedicated pages and layouts for each section.
+Endpoint `pt` digunakan untuk menampilkan data seputar Perguruan Tinggi.
 
 ```
-app                         // Main Next.js application folder
-├── page.tsx                // Hero page - the entry point of the app showcasing key content
-├── layout.tsx              // Main layout file, applies global navigation and footer
-├── blog
-│   ├── page.tsx            // Blog list page, displaying all blog posts with titles, dates, and excerpts
-│   └── [slug]
-│       └── page.tsx        // Dynamic blog post page for viewing individual posts with rich content
-└── docs
-    ├── layout.tsx          // Documentation layout with sidebar, providing easy navigation across doc pages
-    └── [[...slug]]         // Catch-all route to handle nested documentation pages, allowing flexible doc structure
+pt                                   // perguruan tinggi
+├── detail/<str:id_pt>               // detail perguruan tinggi
+├── prodi/<str:id_pt>/<str:id_thsmt> // data prodi berdasarkan perguruan tinggi dan tahun semester
+├── rasio/<str:id_pt>                // rasio dosen dengan mahasiswa
+├── mahasiswa/<str:id_pt>            // rata rata mahasiswa lulus dan mahasiswa baru
+├── waktu-studi/<str:id_pt>          // rata rata waktu studi berdasarkan jenjang
+├── riwayat/<str:id_pt>              // -
+├── biaya-kuliah/<str:id_pt>         // range biaya kuliah
+├── fasilitas/<str:id_pt>            // fasilitas yang ada pada perguruan tinggi
+└── logo/<str:keyword>               // logo perguruan tinggi
 ```
 
 ### Program Studi (Prodi)
 
-This folder contains all reusable components used throughout the project. It’s structured to categorize components, making it easy to locate and manage UI elements, Markdown customizations, and navigation.
-
-```
-components                    // Reusable components
-├── ui                        // ShadCN components, includes standardized UI elements like buttons, forms, and modals
-├── markdown                  // Custom Markdown components for rendering rich Markdown content
-│   ├── CodeBlock.tsx         // Component for rendering syntax-highlighted code blocks
-│   ├── Image.tsx             // Component for handling responsive images in Markdown
-│   └── Table.tsx             // Component to render tables with consistent styling
-└── navbar.tsx                // Main navigation component for the site header, managing links and responsive behavior
-```
-
 ### Dosen
-
-This folder contains global and component-specific CSS files, allowing for project-wide styling consistency and customizations.
-
-```
-styles                        // CSS files
-├── globals.css               // Global CSS file, includes Tailwind base, utilities, and custom global styles
-├── syntax.css                // Syntax highlighting styles, providing consistent code block appearance across the site
-└── overrides.css             // Additional custom styles that override specific component or plugin defaults
-```
 
 ### Mahasiswa
 
-This folder stores all Markdown content for the documentation and blog sections, with clear organization by content type. Each Markdown file represents a single piece of content, with frontmatter used for metadata.
+### Statistik
 
-```
-contents                      // Markdown content for blogs and documentation
-├── docs                      // Documentation content, structured to support nested sections and pages
-│   ├── getting-started.md    // Introductory guide for new users
-│   ├── api-reference.md      // API documentation with detailed endpoint descriptions
-│   └── tutorials             // Subfolder for tutorial-style content
-│       └── tutorial-1.md     // Step-by-step tutorial on a specific topic
-└── blogs                     // Blog content, organized by post
-    ├── intro-to-project.md   // Blog post introducing the project and its goals
-    └── dev-updates.md        // Post discussing recent development updates and new features
-```
-
-### Additional
-
-- **`package.json`**: Contains metadata about the project, dependencies, and scripts for building and running the application.
-- **`tailwind.config.ts`**: Configures Tailwind CSS, allowing customization of theme colors, fonts, and responsive breakpoints specific to this project. 
-
-This structure organizes your project in a way that supports scalability and maintainability, making it easier to navigate and work on different sections of the application.
+Diatas adalah struktur dan API yang tersedia dibuat oleh `ridwaanhall`.
