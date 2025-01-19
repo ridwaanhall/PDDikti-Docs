@@ -20,7 +20,7 @@ export default function Pagination({ pathname }: { pathname: string }) {
           >
             <span className="flex items-center text-muted-foreground text-xs">
               <ChevronLeftIcon className="w-[1rem] h-[1rem] mr-1" />
-              Previous
+              Sebelumnya
             </span>
             <span className="mt-1 ml-1">{res.prev.title}</span>
           </Link>
@@ -37,7 +37,7 @@ export default function Pagination({ pathname }: { pathname: string }) {
             href={`/docs${res.next.href}`}
           >
             <span className="flex items-center text-muted-foreground text-xs">
-              Next
+              Selanjutnya
               <ChevronRightIcon className="w-[1rem] h-[1rem] ml-1" />
             </span>
             <span className="mt-1 mr-1">{res.next.title}</span>
