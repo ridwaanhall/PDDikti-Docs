@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "PDDIKTI Docs",
   metadataBase: new URL("https://pddikti-docs.vercel.app/"),
   description:
-    "This comprehensive documentation template, crafted with Next.js and available as open-source, delivers a sleek and responsive design, tailored to meet all your project documentation requirements.",
+    "PDDIKTI Docs: menyediakan penjelasan terkait pencarian, informasi detail, dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia.",
 };
 
 export default function RootLayout({
