@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   title: "PDDIKTI Docs",
   metadataBase: new URL("https://pddikti-docs.vercel.app/"),
   description:
-    "PDDIKTI Docs: menyediakan penjelasan terkait pencarian, informasi detail, dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia.",
+    "PDDIKTI Docs menyediakan penjelasan terkait pencarian, informasi detail, dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia.",
 };
 
 export default function RootLayout({
