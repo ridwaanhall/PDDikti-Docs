@@ -19,7 +19,7 @@ export default function Home() {
       </h1>
       <p className="mb-8 sm:text-lg max-w-[800px] text-muted-foreground">
         Dokumentasi ini menyediakan penjelasan terkait pencarian, informasi detail,
-        dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia.
+        dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia menggunakan bahasa Python.
       </p>
       <div className="flex flex-row items-center gap-5">
         <Link
