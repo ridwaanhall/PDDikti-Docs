@@ -9,11 +9,11 @@ export type EachRoute = {
 
 export const ROUTES: EachRoute[] = [
   {
-    title: "Getting Started",
+    title: "Memulai",
     href: "/getting-started",
     noLink: true,
     items: [
-      { title: "Introduction", href: "/introduction" },
+      { title: "Pengantar", href: "/introduction" },
       {
         title: "Installation",
         href: "/installation",
