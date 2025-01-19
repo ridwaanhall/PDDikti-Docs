@@ -15,11 +15,11 @@ export default function Home() {
         <MoveUpRightIcon className="w-4 h-4 font-extrabold" />
       </Link>
       <h1 className="text-3xl font-bold mb-4 sm:text-6xl">
-        Dokumentasi API Perguruan Tinggi di Indonesia
+        Dokumentasi API PDDIKTI
       </h1>
       <p className="mb-8 sm:text-lg max-w-[800px] text-muted-foreground">
-        Dokumentasi ini menyediakan penjelasan tentang informasi detail
-        dan stataistik tentang mahasiswa, dosen, prodi, perguruan tinggi di Indonesia.
+        Dokumentasi ini menyediakan penjelasan terkait pencarian, informasi detail,
+        dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia.
       </p>
       <div className="flex flex-row items-center gap-5">
         <Link
