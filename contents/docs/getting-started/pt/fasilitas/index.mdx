@@ -1,0 +1,158 @@
+---
+title: Fasilitas
+description: Informasi fasilitas pada suatu perguruan tinggi berdasarkan ID perguruan tinggi.
+---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Fasilitas PT` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat informasi terkait fasilitas pada suatu perguruan tinggi berdasarkan `id_pt`.
+
+## Endpoint
+
+Untuk mendapatkan informasi fasilitas pada suatu Perguruan Tinggi, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /pt/fasilitas/<str:id_pt>/
+```
+
+Pada endpoint ini, `id_pt` adalah ID unik dari perguruan tinggi yang ingin dicari informasi fasilitasnya.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /pt/fasilitas/IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==/
+```
+
+> Dalam contoh ini, API akan mencoba mengambil informasi fasilitas pada perguruan tinggi yang memiliki ID `IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==`.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `id_pt` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/pt/fasilitas"
+    id_pt = "IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg=="
+    api_url = f"{url}/{id_pt}/"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_pt` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `id_pt` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/pt/fasilitas";
+    $id_pt = "IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==";
+    $api_url = $url . '/' . urlencode($id_pt) . '/';
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_pt` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/pt/fasilitas/IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==/) atau copy text dibawah ini.
+
+    ```plaintext
+     https://api-pddikti.vercel.app/pt/fasilitas/IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==/
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi fasilitas pada perguruan tinggi berdasarkan ID yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    [
+        {
+            "id_blob": "2Jt-CIuaRIhUnUu9xCOjBqza8him21ie1mhwGsIFkG5MVCB2TCKISBYG4EyZ4iJh7iTIcQ==",
+            "file_name": "gedung UTY (1).jpg"
+        },
+        {
+            "id_blob": "SioXUqqj4jTSZjPf2oos5SpmA6DZcUDQtM1oAUov5BbdiM0vU71JHGChUkp7LWs86ROK-w==",
+            "file_name": "lab UTY (1).jpg"
+        },
+        {
+            "id_blob": "1wGEwB90TaC7MSzD_eg6jPXJueSI2Ueu336fVLCwdtq8NrcHViEWi-Pd2XBzJIJSO1tXVg==",
+            "file_name": "kelas UTY (1).jpg"
+        },
+        {
+            "id_blob": "AQmYxRGP8luSmp66JWwvUBwdwwHSyUQzE4ZWuhugTQRelDIdwLQ1yJYC7-X1m39Toh0x6A==",
+            "file_name": "perpustakaan UTY (1).jpg"
+        }
+    ]
+    ```
+    - **Informasi Fasilitas**: Berisi daftar informasi fasilitas, termasuk ID Blob dan nama file.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    [
+        {
+            "id_blob": "string",
+            "file_name": "string"
+        },
+        ...
+    ]
+    ```
+    - **Informasi Fasilitas**: Berisi daftar informasi fasilitas, dengan tipe data string untuk ID Blob dan nama file.
+  </TabsContent>
+</Tabs>
