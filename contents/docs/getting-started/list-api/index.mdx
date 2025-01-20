@@ -3,6 +3,10 @@ title: List API
 description: Bagian ini memberikan informasi terkait  struktur dan API yang tersedia.
 ---
 
+<Note type="danger" title="Peringatan">
+  Jika kamu mendapati bahwa Dokumentasi API kami belum lengkap atau ada yang tidak berfungsi, silahkan ajukan [issue](https://github.com/ridwaanhall/PDDikti-Docs/issues/new) di GitHub agar segera kami perbaiki.
+</Note>
+
 ## List API yang tersedia
 Berikut adalah API yang tersedia:
 
@@ -11,12 +15,12 @@ Berikut adalah API yang tersedia:
 Endpoint `search` digunakan untuk mencari data perguruan tinggi, prodi, dosen, mahasiswa atau semua.
 
 ```
-search                  // endpoint untuk melakukan pencarian
-├── all/<str:keyword>   // mencari data berdasarkan seluruh kategori: pergurutan tinggi, prodi, dosen, dan mahasiswa
-├── pt/<str:keyword>    // mencari data berdasarkan pergurutan tinggi
-├── prodi/<str:keyword> // mencari data berdasarkan program studi
-├── dosen/<str:keyword> // mencari data berdasarkan dosen
-└── mhs/<str:keyword>   // mencari data berdasarkan mahasiswa
+search                   // endpoint untuk melakukan pencarian
+├── all/<str:keyword>/   // mencari data berdasarkan seluruh kategori: pergurutan tinggi, prodi, dosen, dan mahasiswa
+├── pt/<str:keyword>/    // mencari data berdasarkan pergurutan tinggi
+├── prodi/<str:keyword>/ // mencari data berdasarkan program studi
+├── dosen/<str:keyword>/ // mencari data berdasarkan dosen
+└── mhs/<str:keyword>/   // mencari data berdasarkan mahasiswa
 ```
 
 ### Perguruan Tinggi (PT)
@@ -24,24 +28,125 @@ search                  // endpoint untuk melakukan pencarian
 Endpoint `pt` digunakan untuk menampilkan data seputar Perguruan Tinggi.
 
 ```
-pt                                   // perguruan tinggi
-├── detail/<str:id_pt>               // detail perguruan tinggi
-├── prodi/<str:id_pt>/<str:id_thsmt> // data prodi berdasarkan perguruan tinggi dan tahun semester
-├── rasio/<str:id_pt>                // rasio dosen dengan mahasiswa
-├── mahasiswa/<str:id_pt>            // rata rata mahasiswa lulus dan mahasiswa baru
-├── waktu-studi/<str:id_pt>          // rata rata waktu studi berdasarkan jenjang
-├── riwayat/<str:id_pt>              // -
-├── biaya-kuliah/<str:id_pt>         // range biaya kuliah
-├── fasilitas/<str:id_pt>            // fasilitas yang ada pada perguruan tinggi
-└── logo/<str:keyword>               // logo perguruan tinggi
+pt                                    // perguruan tinggi
+├── detail/<str:id_pt>/               // detail perguruan tinggi
+├── prodi/<str:id_pt>/<str:id_thsmt>/ // data prodi berdasarkan perguruan tinggi dan tahun semester
+├── rasio/<str:id_pt>/                // rasio dosen dengan mahasiswa
+├── mahasiswa/<str:id_pt>/            // rata rata mahasiswa lulus dan mahasiswa baru
+├── waktu-studi/<str:id_pt>/          // rata rata waktu studi berdasarkan jenjang
+├── riwayat/<str:id_pt>/              // -
+├── biaya-kuliah/<str:id_pt>/         // range biaya kuliah
+├── fasilitas/<str:id_pt>/            // fasilitas yang ada pada perguruan tinggi
+└── logo/<str:keyword>/               // logo perguruan tinggi
 ```
 
 ### Program Studi (Prodi)
+Endpoint `prodi` digunakan untuk menampilkan data seputar program studi.
+
+```
+prodi
+├── detail/<str:id_prodi>/                                // detail program studi
+├── desc/<str:id_prodi>/                                  // deskripsi program studi
+├── num-students-lecturers/<str:id_prodi>/                // jumlah mahasiswa dan dosen
+├── riwayat/<str:id_prodi>/                               // riwayat program studi
+├── biaya-kuliah/<str:id_prodi>/                          // range biaya kuliah
+├── dosen-homebase/<str:id_prodi>/<str:id_thsmt>/         // pendidikan terakhir dosen
+└── dosen-penghitung-ratio/<str:id_prodi>/<str:id_thsmt>/ // logo perguruan tinggi
+```
 
 ### Dosen
+Endpoint `dosen` digunakan untuk mengambil data seputar dosen.
+
+```
+dosen
+├── profile/<str:id_dosen>/                // detail dosen
+├── study-history/<str:id_dosen>/          // history studi
+├── dosen/teaching-history/<str:id_dosen>/ // riwayat mengajar
+├── portofolio/penelitian/<str:id_dosen>/  // riwayat penelitian
+├── portofolio/pengabdian/<str:id_dosen>/  // riwayat pengabdian
+├── portofolio/karya/<str:id_dosen>/       // riwayat karya
+└── portofolio/paten/<str:id_dosen>/       // riwayat paten
+```
 
 ### Mahasiswa
+Endpoint `mhs` digunakan untuk mengambil data seputar mahasiswa.
+
+```
+mhs
+└── detail/<str:id_mhs>/ // detail mahasiswa
+```
 
 ### Statistik
+Endpoint statistics menampilkan seputar statistik dari mahasiswa, dosen, perguruan tinggi, dan prodi.
+
+#### Statistik Mahasiswa
+Statistik mahasiswa yang mencakup jumlah mahasiswa berdasarkan suatu variabel.
+
+```
+mhs
+├── count/                  // jumlah mahasiswa
+├── count-active/           // jumlah mahasiswa keaktifan
+├── count-gender/           // jumlah mahasiswa berdasarkan jenis kelamin
+├── count-bidang-ilmu/      // jumlah mahasiswa berdasarkan bidang ilmu
+├── count-status/           // jumlah mahasiswa berdasarkan status
+├── count-jenjang/          // jumlah mahasiswa berdasarkan jenjang
+└── count-kelompok-lembaga/ // jumlah mahasiswa berdasarkan kelompok lembaga
+```
+
+#### Statistik Dosen
+Statistik dosen yang mencakup jumlah dosen berdasarkan suatu variabel.
+
+```
+dosen
+├── count/           // jumlah dosen
+├── count-active/    // jumlah dosen keaktifan
+├── count-gender/    // jumlah dosen berdasarkan jenis kelamin
+├── count-bidang/    // jumlah dosen berdasarkan bidang ilmu
+├── count-keaktifan/ // jumlah dosen berdasarkan keaktifan
+├── count-jenjang/   // jumlah dosen berdasarkan jenjang
+└── count-ikatan/    // jumlah dosen berdasarkan ikatan kerja
+```
+
+#### Statistik Perguruan Tinggi
+Statistik perguruan tinggi yang mencakup jumlah perguruan tinggi berdasarkan suatu variabel.
+
+```
+pt
+├── count/                  // jumlah perguruan tinggi
+├── count-province/         // jumlah perguruan tinggi berdasarkan provinsi
+├── count-kelompok-pembina/ // jumlah perguruan tinggi berdasarkan kelompok pembina
+├── count-akreditasi/       // jumlah perguruan tinggi berdasarkan akreditasi
+└── count-bentuk-pt/        // jumlah perguruan tinggi berdasarkan bentuk perguruan tinggi
+```
+
+#### Statistik Program Studi
+Statistik program studi yang mencakup jumlah program studi berdasarkan suatu variabel.
+
+```
+prodi
+├── count/                 // jumlah program studi
+├── bidang-ilmu-terbanyak/ // jumlah program studi berdasarkan bidang ilmu terbanyak
+├── kelompok-pembina/      // jumlah program studi berdasarkan kelompok pembina
+├── bidang-ilmu/           // jumlah program studi berdasarkan bidang ilmu
+├── akreditasi/            // jumlah program studi berdasarkan akreditasi
+└── jenjang/               // jumlah program studi berdasarkan jenjang
+```
+
+#### Statistik Program Studi Berdasarkan Bidang Ilmu
+Statistik program studi berdasarkan bidang ilmu yang ada.
+
+```
+prodi
+├── bidang-ilmu/agama/      // nama dan jumlah prodi berdasarkan bidang ilmu agama
+├── bidang-ilmu/ekonimi/    // nama dan jumlah prodi berdasarkan bidang ilmu ekonomi
+├── bidang-ilmu/humaniora/  // nama dan jumlah prodi berdasarkan bidang ilmu humaniora
+├── bidang-ilmu/kesehatan/  // nama dan jumlah prodi berdasarkan bidang ilmu kesehatan
+├── bidang-ilmu/mipa/       // nama dan jumlah prodi berdasarkan bidang ilmu mipa
+├── bidang-ilmu/pendidikan/ // nama dan jumlah prodi berdasarkan bidang ilmu pendidikan
+├── bidang-ilmu/pertanian/  // nama dan jumlah prodi berdasarkan bidang ilmu pertanian
+├── bidang-ilmu/seni/       // nama dan jumlah prodi berdasarkan bidang ilmu seni
+├── bidang-ilmu/sosial/     // nama dan jumlah prodi berdasarkan bidang ilmu sosial
+└── bidang-ilmu/teknik/     // nama dan jumlah prodi berdasarkan bidang ilmu teknik
+```
 
 Diatas adalah struktur dan API yang tersedia dibuat oleh `ridwaanhall`.
