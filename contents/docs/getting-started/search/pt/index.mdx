@@ -1,57 +1,168 @@
 ---
-title: Image and Link
-description: This section provides an overview of how PDDikti Docs handles links and images in Markdown.
+title: Search Perguruan Tinggi
+description: Endpoint ini digunakan untuk mencari data perguruan tinggi berdasarkan kata kunci.
 ---
 
-In PDDikti Docs, all links and images written in Markdown are automatically converted to their respective Next.js components. This allows for better optimization and performance in your application.
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Search PT` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melakukan pencarian data perguruan tinggi berdasarkan nama, kode, atau singkatan perguruan tinggi.
 
-## Links
+## Endpoint
 
-When you create a link in your Markdown, it is converted to the Next.js `Link` component. This enables client-side navigation and improves loading times. Here’s an example of how a Markdown link is transformed:
+Untuk melakukan pencarian data Perguruan Tinggi, Anda dapat menggunakan endpoint berikut:
 
-### Markdown example
-
-```markdown 
-[Visit OpenAI](https://www.openai.com)
+```plaintext
+GET /search/pt/<str:keyword>
 ```
 
-### Rendered Output
+Pada endpoint ini, `keyword` dapat diisi dengan nama, kode, atau singkatan Perguruan Tinggi yang ingin dicari.
 
-The above Markdown is converted to:
+## Contoh Endpoint
 
-```jsx
-<Link href="https://www.openai.com" target="_blank" rel="noopener noreferrer">
-    Visit OpenAI
-</Link>
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /search/pt/uty
 ```
 
-## Images
+> Dalam contoh ini, API akan mencoba mencari data perguruan tinggi yang sesuai dengan keyword `uty` (singkatan perguruan tinggi).
 
-Similarly, images in Markdown are transformed into the Next.js `Image` component. This allows for automatic image optimization, such as lazy loading and resizing, which enhances performance and user experience. Here’s an example:
+## Contoh Penggunaan
 
-### Markdown
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
 
-```markdown
-![Alt text for the image](https://via.placeholder.com/150)
-```
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
 
-### Output
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
 
-The above Markdown is converted to:
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
 
-```jsx
-<Image
-    src="https://via.placeholder.com/150"
-    alt="Alt text for the image"
-    width={800}
-    height={350}
-/>
-```
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
 
-## Benefits
+    url = "https://api-pddikti.vercel.app/search/pt"
+    keyword = "uty"
+    api_url = f"{url}/{keyword}"
+    data = fetch_api(api_url)
 
-- **Performance Optimization**: Automatic conversion to Next.js components ensures optimized loading of images and links.
-- **Improved User Experience**: Client-side navigation with Next.js `Link` improves the browsing experience.
-- **Responsive Images**: Next.js `Image` component handles responsive images, providing the best quality for various device sizes.
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
 
-By utilizing these features, you can ensure that your documentation is not only visually appealing but also performs efficiently.
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/search/pt";
+    $keyword = "uty";
+    $api_url = $url . '/' . urlencode($keyword);
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/search/pt/uty) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/search/pt/uty
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi perguruan tinggi yang sesuai dengan keyword yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    {
+      "pt": [
+        {
+            "id": "vJVIxEatUkcWz22e__0dvmZax4BnT90U5ZKQG6JEupdiUkmH3ULsyRQtHQ6FZNKbo6knQw==",
+            "kode": "051018",
+            "nama_singkat": "UTY",
+            "nama": "UNIVERSITAS TEKNOLOGI YOGYAKARTA"
+        },
+        {
+            "id": "xilDVGz8sBc5UBTY70qmad3uF-zhpEjcTCYwDbNi5SLMg0tgfPi-Dso2HVe6BML84T7oQQ==",
+            "kode": "061010",
+            "nama_singkat": "UTP SURAKARTA",
+            "nama": "UNIVERSITAS TUNAS PEMBANGUNAN SURAKARTA (UTP)"
+        },
+        {
+            "id": "rouVip-yGYWhUDypzdbGKYYqhxaaG_vRFN1kdRFvy_IDbx0ptmxekwORi13l-Wdl8NpQDQ==",
+            "kode": "061035",
+            "nama_singkat": "UBY",
+            "nama": "UNIVERSITAS BOYOLALI"
+        }
+        ...
+      ]
+    }
+    ```
+    - **PT**: Berisi daftar informasi perguruan tinggi, termasuk ID, kode, nama singkat, dan nama lengkap.
+  </TabsContent>
+  <TabsContent value="struktur">
+
+    ```json:structure-response.json showLineNumbers
+    {
+      "pt": [
+        {
+          "id": "string",
+          "kode": "string",
+          "nama_singkat": "string",
+          "nama": "string"
+        },
+        ...
+      ]
+    }
+    ```
+    - **PT**: Berisi daftar informasi perguruan tinggi, termasuk ID, kode, nama singkat, dan nama lengkap.
+  </TabsContent>
+</Tabs>
