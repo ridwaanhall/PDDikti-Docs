@@ -34,14 +34,6 @@ export const ROUTES: EachRoute[] = [
           { title: "Custom", href: "/custom" },
         ],
       },
-      { 
-        title: "Themes",
-        href: "/themes" 
-      },
-      {
-        title: "Customize",
-        href: "/customize",
-      },
     ],
   },
 ];
