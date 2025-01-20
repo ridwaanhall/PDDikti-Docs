@@ -1,11 +1,13 @@
 ---
 title: Search All
-description: Mencari semua data termasuk perguruan tinggi, program studi, dosen, dan mahasiswa.
+description: Endpoint ini digunakan untuk mencari semua data yang tersedia, meliputi perguruan tinggi, program studi, dosen, dan mahasiswa.
 ---
 
-Cara menggunakan endpoint Search All dan hasil response bisa dilihat dibawah ini.
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Search All` dan bagaimana struktur response yang akan Kamu terima. Dengan endpoint ini, Kamu dapat melakukan pencarian terpadu untuk berbagai jenis data yang ada di sistem.
 
 ## Endpoint
+
+Untuk melakukan pencarian, Kamu dapat menggunakan endpoint berikut:
 
 ```plaintext
 GET /search/all/<str:keyword>
@@ -15,11 +17,13 @@ Pada endpoint ini, `keyword` bisa diisi dengan nama perguruan tinggi, program st
 
 ## Contoh Endpoint
 
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
 ```plaintext
 GET /search/all/ridwan halim uty
 ```
 
-> `Keyword` yang digunakan adalah string `ridwan halim uty` yang berarti pencarian berfokus pada nama `ridwan halim` dan memiliki inisial kampus `uty`.
+> Dalam contoh ini, API akan mencoba mencari data yang sesuai dengan keyword `ridwan halim uty` di antara semua entitas yang tersedia (mahasiswa, dosen, perguruan tinggi, program studi).
 
 ## Contoh Penggunaan
 
@@ -32,6 +36,9 @@ Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP
     <TabsTrigger value="direct">Direct API Access</TabsTrigger>
   </TabsList>
   <TabsContent value="python">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
     ```python:main.py showLineNumbers {13-14}
     import requests
     import json
@@ -58,6 +65,9 @@ Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP
     - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
   </TabsContent>
   <TabsContent value="php">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
     ```php:main.php showLineNumbers {15-16}
     <?php
     function fetch_api($api_url) {
