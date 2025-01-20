@@ -19,7 +19,7 @@ export function Footer() {
             . Source code tersedia di{" "}
             <Link
               className="px-1 underline underline-offset-2"
-              href="https://github.com/ridwaanhall/PDDIKTI-Docs"
+              href="https://github.com/ridwaanhall/PDDikti-Docs"
             >
               GitHub
             </Link>

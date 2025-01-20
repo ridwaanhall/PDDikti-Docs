@@ -15,7 +15,7 @@ export default function Home() {
         <MoveUpRightIcon className="w-4 h-4 font-extrabold" />
       </Link>
       <h1 className="text-3xl font-bold mb-4 sm:text-6xl">
-        Dokumentasi API PDDIKTI
+        Dokumentasi API PDDikti
       </h1>
       <p className="mb-8 sm:text-lg max-w-[800px] text-muted-foreground">
         Dokumentasi ini menyediakan penjelasan terkait pencarian, informasi detail,
@@ -29,7 +29,7 @@ export default function Home() {
           Get Stared
         </Link>
         <Link
-          href="https://github.com/ridwaanhall/PDDIKTI-Docs"
+          href="https://github.com/ridwaanhall/PDDikti-Docs"
           className={buttonVariants({
             variant: "secondary",
             className: "px-6",
@@ -41,7 +41,7 @@ export default function Home() {
       </div>
       <span className="flex flex-row items-start sm:gap-2 gap-0.5 text-muted-foreground text-md mt-7 -mb-12 max-[800px]:mb-12 font-code sm:text-base text-sm font-medium">
         <TerminalSquareIcon className="w-5 h-5 sm:mr-1 mt-0.5" />
-        {"git clone https://github.com/ridwaanhall/PDDIKTI-Docs.git"}
+        {"git clone https://github.com/ridwaanhall/PDDikti-Docs.git"}
       </span>
     </div>
   );
