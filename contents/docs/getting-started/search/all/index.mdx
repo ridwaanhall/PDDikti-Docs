@@ -1,0 +1,190 @@
+---
+title: Search All
+description: Mencari semua data termasuk perguruan tinggi, program studi, dosen, dan mahasiswa.
+---
+
+Cara menggunakan endpoint Search All dan hasil response bisa dilihat dibawah ini.
+
+## Endpoint
+
+```plaintext
+GET /search/all/<str:keyword>
+```
+
+Pada endpoint ini, `keyword` bisa diisi dengan nama perguruan tinggi, program studi, dosen, mahasiswa, atau kombinasi dari nim, nidn, dan lainnya.
+
+## Contoh Endpoint
+
+```plaintext
+GET /search/all/ridwan halim uty
+```
+
+> `Keyword` yang digunakan adalah string `ridwan halim uty` yang berarti pencarian berfokus pada nama `ridwan halim` dan memiliki inisial kampus `uty`.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/search/all"
+    keyword = "ridwan halim uty"
+    api_url = f"{url}/{keyword}"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/search/all";
+    $keyword = "ridwan halim uty";
+    $api_url = $url . '/' . urlencode($keyword);
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/search/all/ridwan%20halim%20uty) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/search/all/ridwan halim uty
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini terdapat 2 bagian, yaitu `hasil response` dan `struktur json`.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    {
+        "mahasiswa": [
+            {
+                "id": "MSR1Om0isJDmM8gtZ22XVh4pfQc_pgft3tWrtqTfAYzBYKSaoZEFxBYviGHNQAIr6ekiuQ==",
+                "nama": "RIDWAN HALIM",
+                "nim": "5210411257",
+                "nama_pt": "UNIVERSITAS TEKNOLOGI YOGYAKARTA",
+                "sinkatan_pt": "UTY",
+                "nama_prodi": "INFORMATIKA"
+            }
+        ],
+        "dosen": null,
+        "pt": null,
+        "prodi": null
+    }
+    ```
+    - **Mahasiswa**: Berisi informasi tentang mahasiswa, termasuk ID, nama, NIM, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+    - **Dosen**: Tidak ada data dosen yang tersedia.
+    - **PT**: Tidak ada data perguruan tinggi yang tersedia.
+    - **Prodi**: Tidak ada data program studi yang tersedia.
+  </TabsContent>
+  <TabsContent value="struktur">
+
+    ```json:structure-response.json showLineNumbers
+    {
+        "mahasiswa": [
+            {
+                "id": "string",
+                "nama": "string",
+                "nim": "string",
+                "nama_pt": "string",
+                "sinkatan_pt": "string",
+                "nama_prodi": "string"
+            },
+            ...
+        ],
+        "dosen": [
+            {
+                "id": "string",
+                "nama": "string",
+                "nidn": "string",
+                "nuptk": "string",
+                "nama_pt": "string",
+                "sinkatan_pt": "string",
+                "nama_prodi": "string"
+            },
+            ...
+        ]
+        ,
+        "pt": [
+            {
+                "id": "string",
+                "kode": "string",
+                "nama_singkat": "string",
+                "nama": "string"
+            },
+            ...
+        ],
+        "prodi": [
+            {
+                "id": "string",
+                "nama": "string",
+                "jenjang": "string",
+                "pt": "string",
+                "pt_singkat": "string"
+            },
+            ...
+        ]
+    }
+    ```
+    - **Mahasiswa**: Berisi informasi tentang mahasiswa, termasuk ID, nama, NIM, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+    - **Dosen**: Berisi informasi tentang dosen, termasuk ID, nama, NIDN, NUPTK, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+    - **PT**: Berisi informasi tentang perguruan tinggi, termasuk ID, kode, nama singkat, dan nama lengkap.
+    - **Prodi**: Berisi informasi tentang program studi, termasuk ID, nama, jenjang, nama perguruan tinggi, dan singkatan perguruan tinggi.
+  </TabsContent>
+</Tabs>
