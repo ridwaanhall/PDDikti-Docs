@@ -33,6 +33,21 @@ export const ROUTES: EachRoute[] = [
           { title: "Mahasiswa", href: "/mhs" },
         ],
       },
+      {
+        title: "Perguruan Tinggi Endpoints",
+        href: "/pt",
+        items: [
+          { title: "Detail", href: "/detail" },
+          { title: "Prodi", href: "/prodi" },
+          { title: "Rasio", href: "/rasio" },
+          { title: "Mahasiswa", href: "/mhs" },
+          { title: "Waktu Studi", href: "/waktu-studi" },
+          { title: "Riwayat", href: "/riwayat" },
+          { title: "Biaya Kuliah", href: "/biaya-kuliah" },
+          { title: "Fasilias", href: "/fasilias" },
+          { title: "Logo", href: "/logo" },
+        ],
+      },
     ],
   },
 ];
