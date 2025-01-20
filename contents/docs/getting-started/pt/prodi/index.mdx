@@ -1,4 +1,190 @@
 ---
 title: Program Studi
-description: Program Studi
+description: Daftar program studi berdasarkan ID perguruan tinggi dan ID tahun semester.
 ---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Prodi pada PT` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat daftar program studi yang ada pada suatu perguruan tinggi berdasarkan `id_pt` dan `id_thsmt`.
+
+## Endpoint
+
+Untuk mendapatkan daftar Program Studi, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /pt/prodi/<str:id_pt>/<str:id_thsmt>
+```
+
+Pada endpoint ini, `id_pt` adalah ID unik dari perguruan tinggi, dan `id_thsmt` adalah ID unik dari tahun semester yang ingin dicari program studinya.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /pt/prodi/IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==/20241
+```
+
+> Dalam contoh ini, API akan mencoba mengambil daftar program studi pada perguruan tinggi dengan ID `IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==` untuk tahun semester `20241`.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `id_pt` dan `id_thsmt` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-15}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/pt/prodi"
+    id_pt = "IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg=="
+    id_thsmt = "20241"
+    api_url = f"{url}/{id_pt}/{id_thsmt}"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url`, `id_pt`, dan `id_thsmt` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `id_pt` dan `id_thsmt` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-17}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/pt/prodi";
+    $id_pt = "IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==";
+    $id_thsmt = "20241";
+    $api_url = $url . '/' . urlencode($id_pt) . '/' . urlencode($id_thsmt);
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url`, `id_pt`, dan `id_thsmt` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/pt/prodi/IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==/20241) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/pt/prodi/IIrmU70D6TnWs79XzUmnBLmgfQLYxkZzUeQjVW4cA9_WKIIB0oJfhVSNS865-zzStoB4tg==/20241
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi daftar program studi yang ada pada perguruan tinggi berdasarkan ID perguruan tinggi dan tahun semester yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+   {
+    "prodi": [
+        {
+            "id_sms": "2Ay-ibi0qTdpzKqxXHOw1aioFgSHBgYb2htmr-KY0q3JuDJaIKDmdyOrDw_tm351pGLPbw==",
+            "kode_prodi": "62201",
+            "nama_prodi": "Akuntansi",
+            "akreditasi": "A",
+            "jenjang_prodi": "S1",
+            "status_prodi": "Aktif",
+            "jumlah_dosen_nidn": 18,
+            "jumlah_dosen_nidk": 0,
+            "jumlah_dosen": 18,
+            "jumlah_dosen_ajar": 0,
+            "jumlah_mahasiswa": 35,
+            "rasio": "-",
+            "indikator_kelengkapan_data": 0
+        },
+        {
+            "id_sms": "f7A3sCEkXahqZOk-bYgSTgGPgj6--HDdhu5NJ8QuNbW-CkkK2CEr1L2MtWjvnAz1Movi1w==",
+            "kode_prodi": "62401",
+            "nama_prodi": "Akuntansi",
+            "akreditasi": "Unggul",
+            "jenjang_prodi": "D3",
+            "status_prodi": "Aktif",
+            "jumlah_dosen_nidn": 5,
+            "jumlah_dosen_nidk": 0,
+            "jumlah_dosen": 5,
+            "jumlah_dosen_ajar": 0,
+            "jumlah_mahasiswa": 2,
+            "rasio": "-",
+            "indikator_kelengkapan_data": 0
+        },
+        ...
+      ]
+    }
+    ```
+     - **Prodi**: Berisi daftar informasi program studi, termasuk ID SMS, kode prodi, nama prodi, akreditasi, jenjang prodi, status prodi, jumlah dosen NIDN, jumlah dosen NIDK, jumlah dosen, jumlah dosen ajar, jumlah mahasiswa, rasio, dan indikator kelengkapan data.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    {
+      "prodi": [
+        {
+            "id_sms": "string",
+            "kode_prodi": "string",
+            "nama_prodi": "string",
+            "akreditasi": "string",
+            "jenjang_prodi": "string",
+            "status_prodi": "string",
+            "jumlah_dosen_nidn": "number",
+            "jumlah_dosen_nidk": "number",
+            "jumlah_dosen": "number",
+            "jumlah_dosen_ajar": "number",
+            "jumlah_mahasiswa": "number",
+            "rasio": "string",
+            "indikator_kelengkapan_data": "number"
+        },
+         ...
+      ]
+    }
+    ```
+    -  **Prodi**: Berisi daftar informasi program studi, dengan tipe data string untuk ID SMS, kode prodi, nama prodi, akreditasi, jenjang prodi, status prodi, dan rasio, serta number untuk jumlah dosen NIDN, jumlah dosen NIDK, jumlah dosen, jumlah dosen ajar, jumlah mahasiswa, dan indikator kelengkapan data.
+  </TabsContent>
+</Tabs>

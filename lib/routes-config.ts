@@ -44,7 +44,7 @@ export const ROUTES: EachRoute[] = [
           { title: "Waktu Studi", href: "/waktu-studi" },
           { title: "Riwayat", href: "/riwayat" },
           { title: "Biaya Kuliah", href: "/biaya-kuliah" },
-          { title: "Fasilias", href: "/fasilias" },
+          { title: "Fasilitas", href: "/fasilitas" },
           { title: "Logo", href: "/logo" },
         ],
       },
