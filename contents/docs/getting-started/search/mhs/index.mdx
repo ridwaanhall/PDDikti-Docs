@@ -1,68 +1,158 @@
 ---
-title: Tabs
-description: This section previews the Tabs component.
+title: Search Mahasiswa
+description: Endpoint ini digunakan untuk mencari data mahasiswa berdasarkan kata kunci.
 ---
 
-The `Tabs` component allows you to organize content into multiple sections, enabling users to switch between them easily. This is particularly useful for displaying related content in a compact manner.
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Search Mahasiswa` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melakukan pencarian data mahasiswa berdasarkan nama, NIM, atau kombinasi dengan nama perguruan tinggi.
 
-## Preview
+## Endpoint
 
-<Tabs defaultValue="java" className="pt-5 pb-1">
+Untuk melakukan pencarian data Mahasiswa, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /search/mhs/<str:keyword>
+```
+
+Pada endpoint ini, `keyword` dapat diisi dengan nim, nama mahasiswa, nama program studi, nama perguruan tinggi, atau kombinasi dari keempatnya.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /search/mhs/ridwan halim informatika uty
+```
+
+> Dalam contoh ini, API akan mencoba mencari data mahasiswa yang sesuai dengan keyword `ridwan halim informatika uty` (nama mahasiswa, nama program studi, dan singkatan perguruan tinggi).
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
   <TabsList>
-    <TabsTrigger value="java">Java</TabsTrigger>
-    <TabsTrigger value="typescript">TypeScript</TabsTrigger>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
   </TabsList>
-  <TabsContent value="java">
-    ```java
-    // HelloWorld.java
-    public class HelloWorld {
-        public static void main(String[] args) {
-            System.out.println("Hello, World!");
-        }
-    }
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/search/mhs"
+    keyword = "ridwan halim informatika uty"
+    api_url = f"{url}/{keyword}"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
     ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
   </TabsContent>
-  <TabsContent value="typescript">
-    ```typescript
-    // helloWorld.ts
-    function helloWorld(): void {
-        console.log("Hello, World!");
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
     }
-    helloWorld();
+
+    $url = "https://api-pddikti.vercel.app/search/mhs";
+    $keyword = "ridwan halim informatika uty";
+    $api_url = $url . '/' . urlencode($keyword);
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
     ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/search/mhs/ridwan%20halim%20informatika%20uty) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/search/mhs/ridwan halim informatika uty
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
   </TabsContent>
 </Tabs>
 
-## Props
+## Response
 
-| Prop        | Type   | Default     | Description                                      |
-|-------------|--------|-------------|--------------------------------------------------|
-| `defaultValue` | `string` | `null` | The value of the tab that is selected by default. |
-| `className` | `string` | `""` | Additional CSS classes for styling the Tabs component. |
+Response ini berisi informasi mahasiswa yang sesuai dengan keyword yang diberikan.
 
-## Code
-
-```jsx
-<Tabs defaultValue="java" className="pt-5 pb-1">
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
   <TabsList>
-    <TabsTrigger value="java">Java</TabsTrigger>
-    <TabsTrigger value="typescript">TypeScript</TabsTrigger>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
   </TabsList>
-  <TabsContent value="java">
-    ```java
-    // HelloWorld.java
-    public class HelloWorld {
-        public static void main(String[] args) {
-            System.out.println("Hello, World!");
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    {
+      "mahasiswa": [
+        {
+            "id": "w62Z95aFYK8sHzG6DtCIUw_Vm2pNmOgbwQR44MwOgAqKZpGq9lx99tG2uMWQmDIQ5GkcgQ==",
+            "nama": "RIDWAN HALIM",
+            "nim": "5210411257",
+            "nama_pt": "UNIVERSITAS TEKNOLOGI YOGYAKARTA",
+            "sinkatan_pt": "UTY",
+            "nama_prodi": "INFORMATIKA"
         }
+      ]
     }
-    ```</TabsContent>
-  <TabsContent value="typescript">
-    ```typescript
-    // helloWorld.ts
-    function helloWorld(): void {
-        console.log("Hello, World!");
+    ```
+    - **Mahasiswa**: Berisi daftar informasi mahasiswa, termasuk ID, nama, NIM, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    {
+      "mahasiswa": [
+        {
+           "id": "string",
+            "nama": "string",
+            "nim": "string",
+            "nama_pt": "string",
+            "sinkatan_pt": "string",
+            "nama_prodi": "string"
+        },
+        ...
+      ]
     }
-    helloWorld();
-    ```</TabsContent>
+    ```
+     - **Mahasiswa**: Berisi daftar informasi mahasiswa, termasuk ID, nama, NIM, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+  </TabsContent>
 </Tabs>
