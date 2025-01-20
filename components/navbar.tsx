@@ -15,7 +15,7 @@ export const NAVLINKS = [
   },
   {
     title: "Diskusi",
-    href: "https://github.com/ridwaanhall/PDDIKTI-Docs/discussions",
+    href: "https://github.com/ridwaanhall/PDDikti-Docs/discussions",
   },
 ];
 
@@ -40,7 +40,7 @@ export function Navbar() {
             <Search />
             <div className="flex ml-2.5 sm:ml-0">
               <Link
-                href="https://github.com/ridwaanhall/PDDIKTI-Docs"
+                href="https://github.com/ridwaanhall/PDDikti-Docs"
                 className={buttonVariants({ variant: "ghost", size: "icon" })}
               >
                 <GithubIcon className="h-[1.1rem] w-[1.1rem]" />
@@ -58,7 +58,7 @@ export function Logo() {
   return (
     <Link href="/" className="flex items-center gap-2.5">
       <CommandIcon className="w-6 h-6 text-muted-foreground" strokeWidth={2} />
-      <h2 className="text-md font-bold font-code">PDDIKTI Docs</h2>
+      <h2 className="text-md font-bold font-code">PDDikti Docs</h2>
     </Link>
   );
 }

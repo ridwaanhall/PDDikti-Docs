@@ -1,1 +1,1 @@
-# PDDIKTI Docs
+# PDDikti Docs
