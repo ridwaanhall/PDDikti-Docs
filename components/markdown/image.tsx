@@ -7,7 +7,7 @@ type Width = ComponentProps<typeof NextImage>["width"];
 export default function Image({
   src,
   alt = "alt",
-  width = 800,
+  width = 350,
   height = 350,
   ...props
 }: ComponentProps<"img">) {
