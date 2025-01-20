@@ -1,38 +1,180 @@
 ---
-title: Stepper
-description: This section previews the stepper component.
+title: Search Dosen
+description: Endpoint ini digunakan untuk mencari data dosen berdasarkan kata kunci.
 ---
 
-In this guide, we utilize a custom `Stepper` component, specifically designed for PDDikti Docs, which enables users to display step-by-step instructions directly within the markdown render. 
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Search Dosen` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melakukan pencarian data dosen berdasarkan nama, NIDN, atau NUPTK dosen.
 
-## Preview
-##
+## Endpoint
 
-<Stepper>
-  <StepperItem title="Step 1: Clone the PDDikti Docs Repository">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, felis sed efficitur tincidunt, justo nulla viverra enim, et maximus nunc dolor in lorem.
-  </StepperItem>
-  <StepperItem title="Step 2: Access the Project Directory">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non neque ut eros auctor accumsan. Mauris a nisl vitae magna ultricies aliquam.
-  </StepperItem>
-  <StepperItem title="Step 3: Install Required Dependencies">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut ipsum nec nulla ultricies porttitor et non justo.
-  </StepperItem>
-</Stepper>
+Untuk melakukan pencarian data Dosen, Anda dapat menggunakan endpoint berikut:
 
-## Code
-
-```jsx
-<Stepper>
-  <StepperItem title="Step 1: Clone the PDDikti Docs Repository">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, felis sed efficitur tincidunt, justo nulla viverra enim, et maximus nunc dolor in lorem.
-  </StepperItem>
-  <StepperItem title="Step 2: Access the Project Directory">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non neque ut eros auctor accumsan. Mauris a nisl vitae magna ultricies aliquam.
-  </StepperItem>
-  <StepperItem title="Step 3: Install Required Dependencies">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ut ipsum nec nulla ultricies porttitor et non justo.
-  </StepperItem>
-</Stepper>
+```plaintext
+GET /search/dosen/<str:keyword>
 ```
 
+Pada endpoint ini, `keyword` dapat diisi dengan nama, NIDN, atau NUPTK dosen yang ingin dicari.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /search/dosen/ridwan uty
+```
+
+> Dalam contoh ini, API akan mencoba mencari data dosen yang sesuai dengan keyword `ridwan uty` (nama dosen dan singkatan perguruan tinggi).
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/search/dosen"
+    keyword = "ridwan uty"
+    api_url = f"{url}/{keyword}"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `keyword` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/search/dosen";
+    $keyword = "ridwan uty";
+    $api_url = $url . '/' . urlencode($keyword);
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `keyword` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/search/dosen/ridwan%20uty) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/search/dosen/ridwan uty
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi dosen yang sesuai dengan keyword yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    {
+      "dosen": [
+        {
+            "id": "1pEchDuPNIavYiDdYRsPQVZGYrGwpHSo-AC-vt6uPilmhjENT4L4h4T26QYQmgE92_Q1xA==",
+            "nama": "RIDWAN BUDI PRASETYO",
+            "nidn": "8849123419",
+            "nuptk": "2356756657130103",
+            "nama_pt": "UNIVERSITAS TEKNOLOGI YOGYAKARTA",
+            "sinkatan_pt": "UTY",
+            "nama_prodi": "INFORMATIKA"
+        },
+        {
+            "id": "7erEE4OufIaWQevc8z5hgjOpRD3E3rnzjW-SepkKoO-n_84UlZQ2i35wKWgIojKs1ctAhA==",
+            "nama": "MUHAMMAD RIDWAN",
+            "nidn": "0926099104",
+            "nuptk": "4258769670130293",
+            "nama_pt": "UNIVERSITAS TEKNOLOGI SULAWESI",
+            "sinkatan_pt": "UTS",
+            "nama_prodi": "MANAJEMEN"
+        },
+        {
+            "id": "zT10_Hftc3OMt4y4Fh46GyOZMfbejiMn99Zyc-7YnnkHnoLjgdYPfz5XcGpfBMjMLxrHTQ==",
+            "nama": "RIDWAN MAHENRA",
+            "nidn": "0207109801",
+            "nuptk": "8339776677130093",
+            "nama_pt": "UNIVERSITAS TEKNOKRAT INDONESIA",
+            "sinkatan_pt": "UTI",
+            "nama_prodi": "INFORMATIKA"
+        },
+        ...
+      ]
+    }
+    ```
+    - **Dosen**: Berisi daftar informasi dosen, termasuk ID, nama, NIDN, NUPTK, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+  </TabsContent>
+  <TabsContent value="struktur">
+
+    ```json:structure-response.json showLineNumbers
+    {
+      "dosen": [
+        {
+          "id": "string",
+          "nama": "string",
+          "nidn": "string",
+          "nuptk": "string",
+          "nama_pt": "string",
+          "sinkatan_pt": "string",
+          "nama_prodi": "string"
+        },
+        ...
+      ]
+    }
+    ```
+    - **Dosen**: Berisi daftar informasi dosen, termasuk ID, nama, NIDN, NUPTK, nama perguruan tinggi, singkatan perguruan tinggi, dan nama program studi.
+  </TabsContent>
+</Tabs>
