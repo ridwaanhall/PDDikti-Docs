@@ -39,13 +39,6 @@ export function FooterButtons() {
   return (
     <>
       <Link
-        href="https://vercel.com/new/copilot-id/clone?demo-description=Dokumentasi%20ini%20menyediakan%20penjelasan%20tentang%20informasi%20detail%20dan%20statistik%20tentang%20mahasiswa%2C%20dosen%2C%20prodi%2C%20perguruan%20tinggi%20di%20Indonesia.&demo-image=&demo-title=PDDIKTI%20Docs&demo-url=https%3A%2F%2Fpddikti-docs.vercel.app%2F&from=templates&project-name=PDDIKTI%20Docs&repository-name=pddikti-docs&repository-url=https%3A%2F%2Fgithub.com%2Fridwaanhall%2FPDDIKTI-Docs"
-        className={buttonVariants({ variant: "outline", size: "sm" })}
-      >
-        <TriangleIcon className="h-[0.8rem] w-4 mr-2 text-primary fill-current" />
-        Deploy
-      </Link>
-      <Link
         href="https://github.com/sponsors/ridwaanhall"
         className={buttonVariants({ variant: "outline", size: "sm" })}
       >
