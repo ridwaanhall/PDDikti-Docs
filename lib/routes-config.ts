@@ -48,6 +48,19 @@ export const ROUTES: EachRoute[] = [
           { title: "Logo", href: "/logo" },
         ],
       },
+      {
+        title: "Program Studi Endpoints",
+        href: "/prodi",
+        items: [
+          { title: "Detail", href: "/detail" },
+          { title: "Deskripsi", href: "/desc" },
+          { title: "Jumlah Mhs dan Dosen", href: "/num-students-lecturers" },
+          { title: "Riwayat", href: "/riwayat" },
+          { title: "Biaya Kuliah", href: "/biaya-kuliah" },
+          { title: "Dosen Homebase", href: "/dosen-homebase" },
+          { title: "Dosen Penghitung Rasio", href: "/dosen-penghitung-ratio" },
+        ],
+      },
     ],
   },
 ];
