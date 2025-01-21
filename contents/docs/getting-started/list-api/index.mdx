@@ -61,7 +61,7 @@ Endpoint `dosen` digunakan untuk mengambil data seputar dosen.
 dosen
 ├── profile/<str:id_dosen>/                // detail dosen
 ├── study-history/<str:id_dosen>/          // history studi
-├── dosen/teaching-history/<str:id_dosen>/ // riwayat mengajar
+├── teaching-history/<str:id_dosen>/       // riwayat mengajar
 ├── portofolio/penelitian/<str:id_dosen>/  // riwayat penelitian
 ├── portofolio/pengabdian/<str:id_dosen>/  // riwayat pengabdian
 ├── portofolio/karya/<str:id_dosen>/       // riwayat karya
@@ -125,7 +125,7 @@ Statistik program studi yang mencakup jumlah program studi berdasarkan suatu var
 ```
 prodi
 ├── count/                 // jumlah program studi
-├── bidang-ilmu-terbanyak/ // jumlah program studi berdasarkan bidang ilmu terbanyak
+├── bidang-ilmu-terbanyak/ // jumlah mahasiswa prodi berdasarkan bidang ilmu terbanyak
 ├── kelompok-pembina/      // jumlah program studi berdasarkan kelompok pembina
 ├── bidang-ilmu/           // jumlah program studi berdasarkan bidang ilmu
 ├── akreditasi/            // jumlah program studi berdasarkan akreditasi
@@ -136,17 +136,17 @@ prodi
 Statistik program studi berdasarkan bidang ilmu yang ada.
 
 ```
-prodi
-├── bidang-ilmu/agama/      // nama dan jumlah prodi berdasarkan bidang ilmu agama
-├── bidang-ilmu/ekonimi/    // nama dan jumlah prodi berdasarkan bidang ilmu ekonomi
-├── bidang-ilmu/humaniora/  // nama dan jumlah prodi berdasarkan bidang ilmu humaniora
-├── bidang-ilmu/kesehatan/  // nama dan jumlah prodi berdasarkan bidang ilmu kesehatan
-├── bidang-ilmu/mipa/       // nama dan jumlah prodi berdasarkan bidang ilmu mipa
-├── bidang-ilmu/pendidikan/ // nama dan jumlah prodi berdasarkan bidang ilmu pendidikan
-├── bidang-ilmu/pertanian/  // nama dan jumlah prodi berdasarkan bidang ilmu pertanian
-├── bidang-ilmu/seni/       // nama dan jumlah prodi berdasarkan bidang ilmu seni
-├── bidang-ilmu/sosial/     // nama dan jumlah prodi berdasarkan bidang ilmu sosial
-└── bidang-ilmu/teknik/     // nama dan jumlah prodi berdasarkan bidang ilmu teknik
+prodi-bidang-ilmu
+├── agama/      // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu agama
+├── ekonimi/    // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu ekonomi
+├── humaniora/  // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu humaniora
+├── kesehatan/  // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu kesehatan
+├── mipa/       // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu mipa
+├── pendidikan/ // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu pendidikan
+├── pertanian/  // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu pertanian
+├── seni/       // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu seni
+├── sosial/     // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu sosial
+└── teknik/     // nama prodi dan jumlah mahasiswa berdasarkan bidang ilmu teknik
 ```
 
 Diatas adalah struktur dan API yang tersedia dibuat oleh `ridwaanhall`.
