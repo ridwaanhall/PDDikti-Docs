@@ -74,6 +74,13 @@ export const ROUTES: EachRoute[] = [
           { title: "Paten dan Hak Cipta", href: "/paten" },
         ],
       },
+      {
+        title: "Mahasiswa Endpoints",
+        href: "/mhs",
+        items: [
+          { title: "Detail", href: "/detail" },
+        ],
+      },
     ],
   },
 ];

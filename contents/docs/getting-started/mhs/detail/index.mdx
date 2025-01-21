@@ -1,0 +1,165 @@
+---
+title: Detail
+description: Detail informasi mahasiswa berdasarkan id_mhs.
+---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Detail Mahasiswa` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat detail informasi mahasiswa berdasarkan `id_mhs`.
+
+## Endpoint
+
+Untuk mendapatkan detail data Mahasiswa, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /mhs/detail/<str:id_mhs>/
+```
+
+Pada endpoint ini, `id_mhs` adalah ID unik dari mahasiswa yang ingin dicari detailnya.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /mhs/detail/XPj8H-ROOLfFK1k16bsX48FH_fZ3auIW2DX_y6TMoi2wo8jPX8mc25fyU55Vxad8kIMFcA==/
+```
+
+> Dalam contoh ini, API akan mencoba mengambil detail data mahasiswa yang memiliki ID `XPj8H-ROOLfFK1k16bsX48FH_fZ3auIW2DX_y6TMoi2wo8jPX8mc25fyU55Vxad8kIMFcA==`.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `id_mhs` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/mhs/detail"
+    id_mhs = "XPj8H-ROOLfFK1k16bsX48FH_fZ3auIW2DX_y6TMoi2wo8jPX8mc25fyU55Vxad8kIMFcA=="
+    api_url = f"{url}/{id_mhs}/"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_mhs` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `id_mhs` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/mhs/detail";
+     $id_mhs = "XPj8H-ROOLfFK1k16bsX48FH_fZ3auIW2DX_y6TMoi2wo8jPX8mc25fyU55Vxad8kIMFcA==";
+    $api_url = $url . '/' . urlencode($id_mhs) . '/';
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_mhs` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/mhs/detail/XPj8H-ROOLfFK1k16bsX48FH_fZ3auIW2DX_y6TMoi2wo8jPX8mc25fyU55Vxad8kIMFcA==/) atau copy text dibawah ini.
+
+    ```plaintext
+     https://api-pddikti.vercel.app/mhs/detail/XPj8H-ROOLfFK1k16bsX48FH_fZ3auIW2DX_y6TMoi2wo8jPX8mc25fyU55Vxad8kIMFcA==/
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi detail informasi mahasiswa berdasarkan ID yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    {
+        "id": "27yyT_vmiKR02YmSB_2QcDUzfUQtwhfwN5TXxvba8LASKflC94xPNVHXsVwzCKDQFitxcg==",
+        "nama_pt": "Universitas Teknologi Yogyakarta",
+        "kode_pt": "051018  ",
+        "kode_prodi": "55202",
+        "prodi": "Informatika",
+        "nama": "RIDWAN HALIM",
+        "nim": "5210411257",
+         "jenis_daftar": "Peserta didik baru",
+        "id_pt": "EYpqFf220a1ptpjftCiA_0v7uYIwSEChr1SxhA53czegDOjMmMDGGfYX7uabp_vmZr62gw==",
+        "id_sms": "UcZUljlXNnMsiwzOpqqYUbBinqzg_OXZKvJ_CACxv8SL9g1AlmzrijOO3wkz0C-P_txXtw==",
+         "jenis_kelamin": "L",
+        "jenjang": "Sarjana",
+        "status_saat_ini": "Aktif-2023/2024 Genap",
+        "tanggal_masuk": "2021-09-20T00:00:00Z"
+    }
+    ```
+    - **Detail Mahasiswa**: Berisi detail informasi mahasiswa, termasuk ID, nama PT, kode PT, kode prodi, nama prodi, nama mahasiswa, NIM, jenis daftar, ID PT, ID SMS, jenis kelamin, jenjang, status saat ini, dan tanggal masuk.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    {
+        "id": "string",
+        "nama_pt": "string",
+        "kode_pt": "string",
+        "kode_prodi": "string",
+        "prodi": "string",
+        "nama": "string",
+        "nim": "string",
+        "jenis_daftar": "string",
+         "id_pt": "string",
+        "id_sms": "string",
+        "jenis_kelamin": "string",
+        "jenjang": "string",
+        "status_saat_ini": "string",
+        "tanggal_masuk": "string"
+    }
+    ```
+     - **Detail Mahasiswa**: Berisi detail informasi mahasiswa, dengan tipe data string untuk semua atribut, yaitu ID, nama PT, kode PT, kode prodi, nama prodi, nama mahasiswa, NIM, jenis daftar, ID PT, ID SMS, jenis kelamin, jenjang, status saat ini, dan tanggal masuk.
+  </TabsContent>
+</Tabs>
