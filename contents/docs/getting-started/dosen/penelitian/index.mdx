@@ -1,0 +1,150 @@
+---
+title: Penelitian
+description: Informasi penelitian dosen berdasarkan id_dosen.
+---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Penelitian Dosen` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat informasi penelitian dosen berdasarkan `id_dosen`.
+
+## Endpoint
+
+Untuk mendapatkan informasi penelitian Dosen, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /dosen/penelitian/<str:id_dosen>/
+```
+
+Pada endpoint ini, `id_dosen` adalah ID unik dari dosen yang ingin dicari informasi penelitiannya.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /dosen/penelitian/IQo6xVoM7GH9q3uC1X3uxNKWyaVjUFZPwj1dFHbt4JRKXgzta8ztf1W6I7_HEos-8sIf8A==/
+```
+
+> Dalam contoh ini, API akan mencoba mengambil informasi penelitian dosen yang memiliki ID `IQo6xVoM7GH9q3uC1X3uxNKWyaVjUFZPwj1dFHbt4JRKXgzta8ztf1W6I7_HEos-8sIf8A==`.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `id_dosen` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/dosen/penelitian"
+    id_dosen = "IQo6xVoM7GH9q3uC1X3uxNKWyaVjUFZPwj1dFHbt4JRKXgzta8ztf1W6I7_HEos-8sIf8A=="
+    api_url = f"{url}/{id_dosen}/"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_dosen` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `id_dosen` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/dosen/penelitian";
+    $id_dosen = "IQo6xVoM7GH9q3uC1X3uxNKWyaVjUFZPwj1dFHbt4JRKXgzta8ztf1W6I7_HEos-8sIf8A==";
+    $api_url = $url . '/' . urlencode($id_dosen) . '/';
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_dosen` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/dosen/penelitian/IQo6xVoM7GH9q3uC1X3uxNKWyaVjUFZPwj1dFHbt4JRKXgzta8ztf1W6I7_HEos-8sIf8A==/) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/dosen/penelitian/IQo6xVoM7GH9q3uC1X3uxNKWyaVjUFZPwj1dFHbt4JRKXgzta8ztf1W6I7_HEos-8sIf8A==/
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi penelitian dosen berdasarkan ID yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    [
+        {
+            "id_sdm": "1W70B4tlT5YfI0CnSRyURfhaR6eFZg8jnbbEbX04usJtHB6OiXxcwbOZ85ZPEFzPti8ARQ==",
+            "jenis_kegiatan": "Penelitian",
+            "judul_kegiatan": "Prototipe Autonomous Boat Berbasis Internet of Things sebagai Wahana Survei Lokasi Penempatan Pembangkit Listrik Tenaga Surya (PLTS) Terapung",
+            "tahun_kegiatan": 2022
+        }
+    ]
+    ```
+    - **Penelitian Dosen**: Berisi daftar informasi penelitian dosen, termasuk ID SDM, jenis kegiatan, judul kegiatan, dan tahun kegiatan.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    [
+        {
+            "id_sdm": "string",
+            "jenis_kegiatan": "string",
+            "judul_kegiatan": "string",
+            "tahun_kegiatan": "number"
+        },
+        ...
+    ]
+    ```
+    - **Penelitian Dosen**: Berisi daftar informasi penelitian dosen, dengan tipe data string untuk ID SDM, jenis kegiatan, dan judul kegiatan, serta number untuk tahun kegiatan.
+  </TabsContent>
+</Tabs>

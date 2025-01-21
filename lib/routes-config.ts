@@ -61,6 +61,19 @@ export const ROUTES: EachRoute[] = [
           { title: "Dosen Penghitung Rasio", href: "/dosen-penghitung-ratio" },
         ],
       },
+      {
+        title: "Dosen Endpoints",
+        href: "/dosen",
+        items: [
+          { title: "Profil", href: "/profile" },
+          { title: "Mengajar", href: "/teaching-history" },
+          { title: "Pendidikan", href: "/study-history" },
+          { title: "Penelitian", href: "/penelitian" },
+          { title: "Pengabdian", href: "/pengabdian" },
+          { title: "Karya", href: "/karya" },
+          { title: "Paten dan Hak Cipta", href: "/paten" },
+        ],
+      },
     ],
   },
 ];

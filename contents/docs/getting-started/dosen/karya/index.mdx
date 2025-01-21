@@ -1,0 +1,163 @@
+---
+title: Karya
+description: Informasi karya dosen berdasarkan id_dosen.
+---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Karya Dosen` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat informasi karya dosen berdasarkan `id_dosen`.
+
+## Endpoint
+
+Untuk mendapatkan informasi karya Dosen, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /dosen/karya/<str:id_dosen>/
+```
+
+Pada endpoint ini, `id_dosen` adalah ID unik dari dosen yang ingin dicari informasi karyanya.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /dosen/karya/AtnqXm_IHYxyGVe_q-YfgBBVmNdZ6DQxS1WpDkwFJxrbj8elL8B0y3d9VoLwmXHx8hzD8w==/
+```
+
+> Dalam contoh ini, API akan mencoba mengambil informasi karya dosen yang memiliki ID `AtnqXm_IHYxyGVe_q-YfgBBVmNdZ6DQxS1WpDkwFJxrbj8elL8B0y3d9VoLwmXHx8hzD8w==`.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Kamu dapat mengubah `id_dosen` sesuai kebutuhan kamu.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/dosen/karya"
+    id_dosen = "AtnqXm_IHYxyGVe_q-YfgBBVmNdZ6DQxS1WpDkwFJxrbj8elL8B0y3d9VoLwmXHx8hzD8w=="
+    api_url = f"{url}/{id_dosen}/"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_dosen` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Kamu dapat mengubah `id_dosen` sesuai kebutuhan kamu.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/dosen/karya";
+    $id_dosen = "AtnqXm_IHYxyGVe_q-YfgBBVmNdZ6DQxS1WpDkwFJxrbj8elL8B0y3d9VoLwmXHx8hzD8w==";
+    $api_url = $url . '/' . urlencode($id_dosen) . '/';
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    - **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    - **Menggabungkan URL**: `url` dan `id_dosen` digabungkan untuk membentuk URL lengkap.
+    - **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/dosen/karya/AtnqXm_IHYxyGVe_q-YfgBBVmNdZ6DQxS1WpDkwFJxrbj8elL8B0y3d9VoLwmXHx8hzD8w==/) atau copy text dibawah ini.
+
+    ```plaintext
+     https://api-pddikti.vercel.app/dosen/karya/AtnqXm_IHYxyGVe_q-YfgBBVmNdZ6DQxS1WpDkwFJxrbj8elL8B0y3d9VoLwmXHx8hzD8w==/
+    ```
+
+    - **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi karya dosen berdasarkan ID yang diberikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    [
+        {
+            "id_sdm": "WbFVWrY4zkX6ZPujXPtXZMfMFYcffPHigUIRiiJtPlVmAjVYemgEngX6kqhGv9B2mBAqnw==",
+            "jenis_kegiatan": "Prosiding seminar nasional",
+            "judul_kegiatan": "Segmentasi Berbasis Warna pada Plat Nomor Kendaraan Umum di Indonesia",
+            "tahun_kegiatan": 2017
+        },
+        {
+            "id_sdm": "xdg6yxxk2WB6gefdQ6YyvjBHFHBv8iosQKJYdGouZDB5lh4k8CeWIAcxfEnRbMYwK2bqXg==",
+            "jenis_kegiatan": "Jurnal nasional terakreditasi",
+            "judul_kegiatan": "Efektifitas Penggunaan Association Rules Mining dalam Personalisasi Website",
+            "tahun_kegiatan": 2021
+        },
+        {
+            "id_sdm": "bJw-bOcVZ6pI0uV8yeDQk1hezudfXBp8jufVCWvLr1kxkfMxGdDoLrv_rozxMwWMJLvbqw==",
+            "jenis_kegiatan": "Jurnal nasional terakreditasi",
+            "judul_kegiatan": "Analisis Pengaruh PCA pada Klasifikasi Kualitas Air Menggunakan Algoritma K-Nearest Neighbor dan Logistic Regression",
+            "tahun_kegiatan": 2022
+        },
+        ...
+    ]
+    ```
+    - **Karya Dosen**: Berisi daftar informasi karya dosen, termasuk ID SDM, jenis kegiatan, judul kegiatan, dan tahun kegiatan.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    [
+        {
+           "id_sdm": "string",
+            "jenis_kegiatan": "string",
+            "judul_kegiatan": "string",
+            "tahun_kegiatan": "number"
+        },
+        ...
+    ]
+    ```
+    - **Karya Dosen**: Berisi daftar informasi karya dosen, dengan tipe data string untuk ID SDM, jenis kegiatan, dan judul kegiatan, serta number untuk tahun kegiatan.
+  </TabsContent>
+</Tabs>
