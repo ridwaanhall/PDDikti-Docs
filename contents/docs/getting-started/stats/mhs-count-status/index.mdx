@@ -1,0 +1,168 @@
+---
+title: Statistik Jumlah Mahasiswa Berdasarkan Status
+description: Informasi jumlah total mahasiswa terdaftar berdasarkan status.
+---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Statistik Jumlah Mahasiswa Berdasarkan Status` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat informasi jumlah total mahasiswa terdaftar berdasarkan status.
+
+## Endpoint
+
+Untuk mendapatkan informasi jumlah total mahasiswa terdaftar berdasarkan status, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /stats/mhs-count-status/
+```
+
+Pada endpoint ini, tidak ada parameter yang diperlukan.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /stats/mhs-count-status/
+```
+
+> Dalam contoh ini, API akan mencoba mengambil informasi jumlah total mahasiswa terdaftar berdasarkan status.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Tidak ada parameter yang dibutuhkan.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/stats/mhs-count-status"
+    api_url = f"{url}/"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    -   **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    *   **Menggabungkan URL**: `url` digabungkan untuk membentuk URL lengkap.
+    -   **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Tidak ada parameter yang dibutuhkan.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/stats/mhs-count-status";
+    $api_url = $url . '/';
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    -   **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    *   **Menggabungkan URL**: `url` digabungkan untuk membentuk URL lengkap.
+    -   **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/stats/mhs-count-status/) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/stats/mhs-count-status/
+    ```
+
+    -   **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi jumlah total mahasiswa terdaftar berdasarkan status.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    [
+        {
+            "status": "A",
+            "jumlah_mhs": 4963114
+        },
+        {
+            "status": "C",
+            "jumlah_mhs": 402
+        },
+        {
+            "status": "D",
+            "jumlah_mhs": 138
+        },
+        {
+            "status": "K",
+            "jumlah_mhs": 389
+        },
+        {
+            "status": "L",
+            "jumlah_mhs": 5203
+        },
+        {
+            "status": "N",
+            "jumlah_mhs": 3759
+        },
+        {
+            "status": "P",
+            "jumlah_mhs": 11
+        }
+    ]
+    ```
+    -   **Jumlah Mahasiswa**: Berisi daftar informasi jumlah total mahasiswa terdaftar berdasarkan status, termasuk status dan jumlah mahasiswa.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    [
+        {
+            "status": "string",
+            "jumlah_mhs": "number"
+        },
+        ...
+    ]
+    ```
+    -   **Jumlah Mahasiswa**: Berisi daftar informasi jumlah total mahasiswa terdaftar berdasarkan status, dengan tipe data string untuk status dan number untuk jumlah mahasiswa.
+  </TabsContent>
+</Tabs>

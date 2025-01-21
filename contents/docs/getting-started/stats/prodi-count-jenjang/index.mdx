@@ -1,0 +1,188 @@
+---
+title: Statistik Jumlah Program Studi Berdasarkan Jenjang Pendidikan
+description: Informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan.
+---
+
+Dokumentasi ini menjelaskan cara menggunakan endpoint `Statistik Jumlah Program Studi Berdasarkan Jenjang Pendidikan` dan bagaimana struktur response yang akan Anda terima. Dengan endpoint ini, Anda dapat melihat informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan.
+
+## Endpoint
+
+Untuk mendapatkan informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan, Anda dapat menggunakan endpoint berikut:
+
+```plaintext
+GET /stats/prodi-count-jenjang/
+```
+
+Pada endpoint ini, tidak ada parameter yang diperlukan.
+
+## Contoh Endpoint
+
+Untuk memberikan gambaran yang lebih jelas, berikut adalah contoh penggunaan endpoint:
+
+```plaintext
+GET /stats/prodi-count-jenjang/
+```
+
+> Dalam contoh ini, API akan mencoba mengambil informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan.
+
+## Contoh Penggunaan
+
+Berikut adalah 3 contoh penggunaan yang kami buat, yaitu menggunakan Python, PHP, dan akses API secara langsung.
+
+<Tabs defaultValue="python" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="python">Python</TabsTrigger>
+    <TabsTrigger value="php">PHP</TabsTrigger>
+    <TabsTrigger value="direct">Direct API Access</TabsTrigger>
+  </TabsList>
+  <TabsContent value="python">
+
+    Tidak ada parameter yang dibutuhkan.
+
+    ```python:main.py showLineNumbers {13-14}
+    import requests
+    import json
+
+    def fetch_api(api_url):
+        try:
+            response = requests.get(api_url)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            print(f"Error: {e}")
+            return None
+
+    url = "https://api-pddikti.vercel.app/stats/prodi-count-jenjang"
+    api_url = f"{url}/"
+    data = fetch_api(api_url)
+
+    print(json.dumps(data, indent=4) if data else "No data fetched.")
+    ```
+
+    -   **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    *   **Menggabungkan URL**: `url` digabungkan untuk membentuk URL lengkap.
+    -   **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="php">
+
+    Tidak ada parameter yang dibutuhkan.
+
+    ```php:main.php showLineNumbers {15-16}
+    <?php
+    function fetch_api($api_url) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error: ' . curl_error($ch);
+            return null;
+        }
+        curl_close($ch);
+        return json_decode($response, true);
+    }
+
+    $url = "https://api-pddikti.vercel.app/stats/prodi-count-jenjang";
+    $api_url = $url . '/';
+    $data = fetch_api($api_url);
+
+    if ($data) {
+        echo '<pre>' . json_encode($data, JSON_PRETTY_PRINT) . '</pre>';
+    } else {
+        echo "No data fetched.";
+    }
+    ?>
+    ```
+
+    -   **Mengirim Permintaan**: Fungsi `fetch_api` mengirim permintaan GET ke URL API dan mengembalikan data JSON.
+    *   **Menggabungkan URL**: `url` digabungkan untuk membentuk URL lengkap.
+    -   **Mencetak Hasil**: Data yang diambil dicetak dalam format JSON yang rapi atau pesan kesalahan jika data tidak ditemukan.
+  </TabsContent>
+  <TabsContent value="direct">
+    Klik untuk mengakses [API directly](https://api-pddikti.vercel.app/stats/prodi-count-jenjang/) atau copy text dibawah ini.
+
+    ```plaintext
+    https://api-pddikti.vercel.app/stats/prodi-count-jenjang/
+    ```
+
+    -   **Copy paste kode**: Copy kode dan paste pada browser untuk melihat API secara langsung.
+  </TabsContent>
+</Tabs>
+
+## Response
+
+Response ini berisi informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan.
+
+<Tabs defaultValue="hasil" className="pt-5 pb-1">
+  <TabsList>
+    <TabsTrigger value="hasil">Hasil Response</TabsTrigger>
+    <TabsTrigger value="struktur">Struktur JSON</TabsTrigger>
+  </TabsList>
+  <TabsContent value="hasil">
+    ```json:response.json showLineNumbers
+    [
+        {
+            "jumlah_prodi": 1582,
+            "jenjang_prodi": "Profesi"
+        },
+        {
+            "jumlah_prodi": 323,
+            "jenjang_prodi": "D2"
+        },
+        {
+            "jumlah_prodi": 283,
+            "jenjang_prodi": "D1"
+        },
+       {
+           "jumlah_prodi": 4,
+            "jenjang_prodi": "S3 Terapan"
+        },
+         {
+            "jumlah_prodi": 54,
+             "jenjang_prodi": "Sp-2"
+         },
+        {
+            "jumlah_prodi": 63,
+            "jenjang_prodi": "S2 Terapan"
+        },
+         {
+            "jumlah_prodi": 4855,
+            "jenjang_prodi": "S2"
+        },
+        {
+            "jumlah_prodi": 1166,
+            "jenjang_prodi": "S3"
+         },
+         {
+            "jumlah_prodi": 477,
+             "jenjang_prodi": "Sp-1"
+        },
+        {
+           "jumlah_prodi": 7336,
+            "jenjang_prodi": "D3"
+        },
+        {
+            "jumlah_prodi": 27570,
+            "jenjang_prodi": "S1"
+        },
+        {
+            "jumlah_prodi": 2148,
+            "jenjang_prodi": "D4"
+         }
+    ]
+    ```
+    -   **Jumlah Program Studi**: Berisi daftar informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan, termasuk jenjang program studi dan jumlah program studi.
+  </TabsContent>
+  <TabsContent value="struktur">
+    ```json:structure-response.json showLineNumbers
+    [
+        {
+            "jumlah_prodi": "number",
+            "jenjang_prodi": "string"
+        },
+         ...
+    ]
+    ```
+    -   **Jumlah Program Studi**: Berisi daftar informasi jumlah total program studi terdaftar berdasarkan jenjang pendidikan, dengan tipe data number untuk jumlah program studi dan string untuk jenjang program studi.
+  </TabsContent>
+</Tabs>
