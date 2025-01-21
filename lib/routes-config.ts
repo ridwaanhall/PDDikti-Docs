@@ -112,6 +112,22 @@ export const ROUTES: EachRoute[] = [
           { title: "Mahasiswa Status", href: "/mhs-count-status" },
         ],
       },
+      {
+        title: "Prodi Bidang Ilmu Endpoints",
+        href: "/prodi-bidang-ilmu",
+        items: [
+          { title: "Agama", href: "/agama" },
+          { title: "Ekonomi", href: "/ekonomi" },
+          { title: "Humaniora", href: "/humaniora" },
+          { title: "Kesehatan", href: "/kesehatan" },
+          { title: "MIPA", href: "/mipa" },
+          { title: "Pendidikan", href: "/pendidikan" },
+          { title: "Pertaianan", href: "/pertanian" },
+          { title: "Seni", href: "/seni" },
+          { title: "Sosial", href: "/sosial" },
+          { title: "Teknik", href: "/teknik" },
+        ],
+      },
     ],
   },
 ];
