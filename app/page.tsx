@@ -29,14 +29,14 @@ export default function Home() {
           Get Stared
         </Link>
         <Link
-          href="https://github.com/ridwaanhall/PDDikti-Docs"
+          href="https://github.com/ridwaanhall/api-pddikti"
           className={buttonVariants({
             variant: "secondary",
             className: "px-6",
             size: "lg",
           })}
         >
-          Source Code
+          API PDDikti
         </Link>
       </div>
       <span className="flex flex-row items-start sm:gap-2 gap-0.5 text-muted-foreground text-md mt-7 -mb-12 max-[800px]:mb-12 font-code sm:text-base text-sm font-medium">
