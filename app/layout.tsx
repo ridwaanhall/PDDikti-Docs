@@ -21,7 +21,7 @@ const monoFont = Space_Mono({
 
 export const metadata: Metadata = {
   title: "PDDikti Docs",
-  metadataBase: new URL("https://PDDikti-docs.vercel.app/"),
+  metadataBase: new URL("https://PDDikti-docs.ridwaanhall.com/"),
   description:
     "PDDikti Docs menyediakan penjelasan terkait pencarian, informasi detail, dan statistik dari mahasiswa, dosen, prodi, dan perguruan tinggi di Indonesia.",
 };
