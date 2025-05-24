@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api-pddikti.vercel.app/**",
+        hostname: "api-pddikti.ridwaanhall.com/**",
       },
     ],
   },
