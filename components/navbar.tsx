@@ -15,7 +15,7 @@ export const NAVLINKS = [
   },
   {
     title: "Diskusi",
-    href: "https://github.com/ridwaanhall/PDDikti-Docs/discussions",
+    href: "https://github.com/ridwaanhall/api-pddikti/discussions",
   },
 ];
 
